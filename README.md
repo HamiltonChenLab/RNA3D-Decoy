@@ -38,7 +38,6 @@ For a platform supported by the OpenStructure Conda package, create an environme
 ```bash
 conda create -n rna3d-decoy -c conda-forge -c bioconda python=3.11 openstructure pip
 conda activate rna3d-decoy
-python -m pip install "DockQ>=2,<3" biopython
 ```
 
 
