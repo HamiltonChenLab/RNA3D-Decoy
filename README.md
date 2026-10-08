@@ -4,6 +4,9 @@ RNA3D-Decoy provides target split lists and utilities for preparing RNA referenc
 
 The typical workflow is to obtain reference structures, generate predictions with an external prediction method, organize the structure files, and run the scoring scripts. Prediction generation, pretrained models, and pre-generated decoy coordinates are not included in this checkout.
 
+# Download data
+The full dataset can be downloaded at: https://doi.org/10.5281/zenodo.23086377.
+
 ## Repository contents
 
 | File or directory | Purpose |
@@ -19,6 +22,7 @@ The typical workflow is to obtain reference structures, generate predictions wit
 **Current setup requirements:** the `level1`, `level2`, and `level3` download modes depend on helper modules that are not included in this checkout. The `strict` download mode is implemented in `download_rna.py` itself. The lDDT script also requires a path change before use outside the original cluster. Both are explained below.
 
 ## Installation
+If you do not have a plan to regenerate labels, you do not need to install this repository.
 
 Clone the repository and run the examples from its root directory:
 
@@ -37,16 +41,6 @@ conda activate rna3d-decoy
 python -m pip install "DockQ>=2,<3" biopython
 ```
 
-See the official [OpenStructure installation instructions](https://openstructure.org/install) for Conda and container options, and the [DockQ installation instructions](https://github.com/wallnerlab/DockQ) for its supported setup. If the Conda package is unavailable for your platform, use one of OpenStructure's documented container environments.
-
-Check that the active environment can load the dependencies:
-
-```bash
-python -c "from ost import io; from ost.mol import alg; from ost.mol.alg.lddt import lDDTScorer; from Bio import PDB; print('Imports OK')"
-DockQ --help
-```
-
-The repository does not currently include a pinned environment or dependency lock file.
 
 ## Dataset levels and splits
 
@@ -107,42 +101,11 @@ Set `RCSB_RNA_LIMIT=0` to remove the accepted-target limit. Strict mode searches
 | `RCSB_RNA_MAIN_MIN`, `RCSB_RNA_MAIN_MAX` | Strict-mode main length range; default: 30–500 nucleotides, inclusive. |
 | `RCSB_RNA_EXTENSION_MIN`, `RCSB_RNA_EXTENSION_MAX` | Strict-mode extension length range; default: 500–1000 nucleotides, inclusive. |
 
-Strict mode creates:
 
-```text
-data/strict/
-├── all/
-│   ├── fasta_rna/       # RNA FASTA sequences
-│   ├── cif_rna/         # Filtered RNA/allowed-metal atom records
-│   ├── cif_native/      # Full downloaded mmCIF structures
-│   └── af3_inputs/      # AlphaFold 3 input JSON files
-├── main_30_500/         # Same subdirectories for the main length range
-├── extension_500_1000/  # Same subdirectories for the extension range
-├── pdb_rna_only.txt
-├── pdb_rna_main_30_500.txt
-├── pdb_rna_extension_500_1000.txt
-├── selected_rna_sequences.tsv
-└── skipped_rna_sequences.tsv
-```
 
 Files use the PDB ID as their basename, such as `1A60.cif`. A 500-nucleotide target belongs to both default length ranges. The `cif_rna` writer can retain allowed metal atoms, but the strict selection rules exclude nonpolymer entities. The JSON files prepare prediction inputs; this script does not run AlphaFold 3.
 
 To score predictions against the flat strict reference directory, use `--native-dir "$PWD/data/strict/all/cif_native" --native-level 1` with RMSD or lDDT. This assigns a level for matching; it does not establish membership in the supplied L1 split.
-
-### Level 1/2/3 modes require additional modules
-
-The following imports must be available beside `download_rna.py` or on `PYTHONPATH`:
-
-| Mode | Required module, currently absent |
-| --- | --- |
-| `level1`, `level2` | `build_single_chain_rna_datasets.py` |
-| `level3` | `build_single_rna_single_protein_targets.py` |
-
-Without these modules, the default `python download_rna.py` command fails with `ModuleNotFoundError`. Obtain the matching helper implementations before using these modes.
-
-Both `level1` and `level2` call the same helper pipeline; the wrapper advertises outputs for both levels. The mode changes defaults such as the date and resolution filters rather than selecting a separate level-specific pipeline. The wrapper exposes `RCSB_RNA_MAX_LENGTH` (default 1000) for this pipeline.
-
-For level 3, the wrapper exposes `RCSB_RNA_MAX_RNA_LENGTH` (default 1000), `RCSB_RNA_CONTACT_CUTOFF` (default 6.0 Å), `RCSB_RNA_REQUIRE_CONTACT` (default true), and `RCSB_RNA_ALLOW_ORGANIC_LIGAND` (default false). Its complete filtering and output behavior depends on the missing helper module.
 
 ## Organize prediction and reference files
 
@@ -417,30 +380,3 @@ Useful options:
 
 `--workers` controls concurrent structure pairs; `--dockq-n-cpu` controls CPUs requested by each DockQ call. The wrapper uses Unix file locking and should be run in a Unix-like environment.
 
-## Re-running and troubleshooting
-
-All summary CSVs include an `error` column. Inspect it even if a script finishes normally, since individual scoring failures are recorded while processing continues.
-
-| Symptom | What to check |
-| --- | --- |
-| `No module named 'ost'` | Activate an OpenStructure environment. RMSD/lDDT import it before parsing arguments, so even `--help` needs this dependency. |
-| Missing `build_single_...` module | Obtain the helper modules for level1/2/3 downloading, or explicitly use strict mode. |
-| Zero tasks or skipped directories | Check the prediction root, model folders, level filters, and special level-2 paths. |
-| `No matching native found` | Check filename target IDs, `levelN` directories, and `--native-level` for flat native directories. |
-| DockQ cannot open its output CSV | Create the parent directory of `--output-csv` before running. |
-| DockQ executable not found | Activate the installation environment or set `--dockq-bin`. |
-| Unexpected residue matches or missing scores | Inspect chain content, residue numbering, atom names, and the summary's matched atom/residue counts. |
-
-RMSD and lDDT merge new CSV rows by their identifying fields and preserve existing successful rows with the same keys. To recompute after changing coordinates or settings, use a fresh output location (or move the earlier outputs aside). Run jobs writing the same RMSD/lDDT CSVs sequentially because their merge operations do not use file locks.
-
-DockQ skips existing successful CSV entries, can reuse cached JSON, and locks CSV merges for concurrent workers or shards. Use `--force` to refresh existing scores.
-
-RMSD and DockQ default to the **parent of the repository directory** as `ROOT`, unless `CASP17_ROOT` is set. Their inherited native/prediction paths refer to the original project layout. The explicit paths in the examples avoid those assumptions.
-
-For all available scoring options, after installing the required dependencies:
-
-```bash
-python prediction_rmsd.py --help
-python prediction_lddt.py --help
-python prediction_dockq.py --help
-```
