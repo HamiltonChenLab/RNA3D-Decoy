@@ -4,6 +4,10 @@ RNA3D-Decoy provides target split lists and utilities for preparing RNA referenc
 
 The typical workflow is to obtain reference structures, generate predictions with an external prediction method, organize the structure files, and run the scoring scripts. Prediction generation, pretrained models, and pre-generated decoy coordinates are not included in this checkout.
 
+## Analysis results
+
+See [Analysis results](docs/analysis-results.md) for the TM-score, lDDT, RMSD, and DockQ analyses, tables, filtering rules, and scoring definitions.
+
 # Download data
 The full dataset can be downloaded at: https://doi.org/10.5281/zenodo.23086377.
 
