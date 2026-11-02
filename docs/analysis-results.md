@@ -200,6 +200,12 @@ Here, D denotes DockQ. These categories are mutually exclusive and follow the st
 
 Across 22,000 Level III decoys, AF3 has the highest proportions of medium-or-higher reference quality (59.18%) and high reference quality (23.10%). ESMFold2 is second in medium-or-higher coverage (44.17%), while Protenix has a larger high-quality fraction than ESMFold2 (13.94% versus 10.62%). Overall, 41.67% fall below the 0.23 reference cutoff. These results describe the observed interface-score distribution under the stated cutoffs.
 
+### DockQ score distributions
+
+![DockQ distributions for all decoys, target medians, and target means](dockq_01_distributions.png)
+
+**Figure D1. All-decoy and across-target DockQ distributions.** The left panel includes all 22,000 Level III decoys. The middle and right panels summarize the per-target median and mean DockQ for each method. Each target contributes one value per method to these two panels; ESMFold2 covers 143 targets and the other methods cover 144. The red horizontal reference is the pooled all-decoy median (0.3208). Higher DockQ indicates better agreement at the RNA–protein interface.
+
 ## Interpretation and limitations
 
 - Decoys from the same target are related observations. Pooled distributions describe the generated pool; target-level comparisons use targets as the statistical unit.
