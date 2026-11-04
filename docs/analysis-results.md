@@ -518,17 +518,4 @@ All DockQ figures concern Level III RNA–protein interfaces. The conventional D
 - Missingness is metric dependent. Comparisons requiring a shared population should explicitly align valid targets and decoys rather than assume that all four metrics have identical denominators.
 - Score dispersion describes variation in reference similarity; it is not a direct measure of structural diversity. These analyses also do not establish QA-ranking performance or performance on unrelated future targets.
 
-## Provenance and numerical verification
 
-The page was prepared from the saved analysis CSV and the decoy-level inputs embedded in the existing lDDT, RMSD, and DockQ reports. Numerical verification recomputed the table summaries, TM-score threshold counts, DockQ category counts, and RMSD correlations from those saved inputs. It included **920 numerical checks** across the RNA-only and mixed-backbone summaries and the final threshold/correlation tables. The original structural scoring programs were not rerun for this page.
-
-| Input snapshot | SHA-256 |
-| --- | --- |
-| Filtered TM-score decoy CSV | `6a090a99e920b006c9340d51d0fa1831f72fb515013581a7ee7d1f9cd42b60cc` |
-| lDDT source CSV recorded by the report | `2931ed88e835cf623b893cc2b138a515a1420371f0c162bc0334c6688e1fb08d` |
-| RMSD source CSV recorded by the report | `e30301710ad7cb81849b6c5bcaf41c564e17703f28e29945d5d06ad68c3f206e` |
-| DockQ source CSV recorded by the report | `1c2e21ff8c72ce438e2255f85cddc1c15988cb30a7af65ed27022f058018fe4c` |
-
-The source-CSV hashes for lDDT, RMSD, and DockQ identify the input snapshots recorded when the reports were produced. The present numerical verification used the preserved decoy records embedded in those reports. Missing software-version information is not inferred: the archived lDDT report does not record an OpenStructure version, and the DockQ producer configuration/version was not verified in the original analysis.
-
-The full dataset is linked from the [repository README](../README.md#download-data).
