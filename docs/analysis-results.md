@@ -94,6 +94,117 @@ Coverage is `100 × count(TM-score > threshold) / number of valid decoys` within
 
 At a threshold of >0.60, AF3 has the largest fraction in Level I (8.92%) and Level III (34.95%), while Protenix leads Level II (54.07%). At >0.80, the Level II ordering changes: Boltz-2 reaches 13.28%, compared with 13.05% for Protenix. This endpoint dependence is visible only when the score distribution is considered beyond a single mean or median.
 
+![T1: All-decoy TM-score threshold exceedance by method and level](TMScore-classification.png)
+
+**Figure T1.** All-decoy TM-score threshold coverage corresponding to Table 3. Each cell is the percentage of valid decoys strictly above 0.21, 0.45, 0.60, or 0.80 within one method and level, rounded to one decimal place. These are cumulative threshold exceedances, not mutually exclusive quality categories.
+
+### All-decoy TM-score figures
+
+All figures use the analysis population above. Level I/II TM-scores evaluate RNA; Level III TM-scores evaluate RNA–protein complexes. Click an image to inspect its full resolution.
+
+![T2: fig 02d method all decoy violin ](fig_02d_method_all_decoy_violin.png)
+
+**Figure T2.** All-decoy TM-score distributions by method. Every eligible observed decoy is included; the overlaid boxes summarize the pooled distributions.
+
+![T3: fig raw 01 method level violin ](fig_raw_01_method_level_violin.png)
+
+**Figure T3.** All-decoy TM-score distributions by method and level. Every eligible observed decoy is retained; the inner boxes show the median and interquartile range within each method and level. Level I/II scores evaluate RNA, whereas Level III scores evaluate RNA–protein complexes.
+
+![T4: fig raw 02 method level ecdf ](fig_raw_02_method_level_ecdf.png)
+
+**Figure T4.** Exact all-decoy empirical cumulative distributions by method within each level. Curves show the fraction of observed decoys with TM-score at or below each value.
+
+![T5: fig all 06 sequence length vs tm score ](fig_all_06_sequence_length_vs_tm_score.png)
+
+**Figure T5.** All-decoy TM-score versus sequence length, separated by method and level. Level III length includes RNA and protein in the evaluated complex; its scale is not RNA-only length.
+
+![T6: fig raw 04 target score landscape by method ](fig_raw_04_target_score_landscape_by_method.png)
+
+**Figure T6.** TM-score distributions across all targets for each method. All observed decoys are retained, with target-level summary intervals as shown in the figure.
+
+![T7: fig raw 05 target method threshold heatmaps ](fig_raw_05_target_method_threshold_heatmaps.png)
+
+**Figure T7.** Within-target, within-method fractions of decoys with TM-score strictly above 0.20, 0.40, 0.60, and 0.80. These exploratory cutoffs differ from Table 3, which uses 0.21, 0.45, 0.60, and 0.80; missing cells are not zero.
+
+<details>
+<summary>Additional TM-score distributions, target summaries, and method complementarity (18 figures)</summary>
+
+These analyses complement the all-decoy views. Bootstrap error bars are 95% pointwise percentile intervals from 10,000 target-level resamples (seed 20260901). They do not represent simultaneous confidence intervals or equal generation budgets.
+
+![T8: fig 01a overall tm histogram ](fig_01a_overall_tm_histogram.png)
+
+**Figure T8.** Pooled TM-score histogram for all 103,549 decoys, using bins of width 0.02. Each observed decoy contributes equally.
+
+![T9: fig 01b method ecdf ](fig_01b_method_ecdf.png)
+
+**Figure T9.** Exact pooled empirical cumulative distributions for each method's observed decoys. Unequal generation counts are retained.
+
+![T10: fig 01c level ecdf ](fig_01c_level_ecdf.png)
+
+**Figure T10.** Exact pooled empirical cumulative distributions by level. Levels contain different targets, and Level III evaluates RNA–protein complexes.
+
+![T11: fig 02a method target median ](fig_02a_method_target_median.png)
+
+**Figure T11.** Across-target distributions of target–method median TM-scores. Each observation represents one target–method median.
+
+![T12: fig 02b method target best ](fig_02b_method_target_best.png)
+
+**Figure T12.** Across-target distributions of the best observed TM-score in each target–method cell. These maxima depend on the actual numbers of generated decoys.
+
+![T13: fig 02c method quality breadth ](fig_02c_method_quality_breadth.png)
+
+**Figure T13.** Within-target TM-score interquartile ranges by method. Score dispersion describes quality breadth, not three-dimensional structural diversity.
+
+![T14: fig 03a target difficulty ](fig_03a_target_difficulty.png)
+
+**Figure T14.** Target-level pooled median TM-scores, combining the available methods for each target. Difficulty is relative to this observed method pool.
+
+![T15: fig 03b target median vs iqr ](fig_03b_target_median_vs_iqr.png)
+
+**Figure T15.** Target-level median TM-score versus within-target interquartile range, grouped by level. Each point is one target.
+
+![T16: fig 03c target quality entropy ](fig_03c_target_quality_entropy.png)
+
+**Figure T16.** Normalized entropy across the descriptive TM-score bins [0, 0.2), [0.2, 0.4), [0.4, 0.6), [0.6, 0.8), and [0.8, 1]. These bins are not validated folding-success categories.
+
+![T17: fig 03d sorted target intervals ](fig_03d_sorted_target_intervals.png)
+
+**Figure T17.** All targets sorted by their pooled median TM-score, with Q10–Q90 and Q25–Q75 intervals. No targets are subsampled.
+
+![T18: fig 04a target method heatmap ](fig_04a_target_method_heatmap.png)
+
+**Figure T18.** Target–method median TM-score heatmap. Rows represent targets and columns represent methods; missing observations remain marked as missing.
+
+![T19: fig 04b method correlation ](fig_04b_method_correlation.png)
+
+**Figure T19.** Pairwise Spearman correlations of target–method median TM-scores, using jointly observed targets for each pair. Score correlation does not establish structural redundancy.
+
+![T20: fig 05a exact winner share ](fig_05a_exact_winner_share.png)
+
+**Figure T20.** Shares of targets for which each method supplies the highest observed TM-score. Ties split credit equally, the denominator is all targets, and error bars are target-bootstrap intervals.
+
+![T21: fig 05b near best coverage ](fig_05b_near_best_coverage.png)
+
+**Figure T21.** Fractions of available targets for which a method's best observed score is within 0.01, 0.02, or 0.05 of the pooled best observed score.
+
+![T22: fig 05c leave one out oracle drop ](fig_05c_leave_one_out_oracle_drop.png)
+
+**Figure T22.** Mean loss in the pooled best observed TM-score after removing each method, with target-bootstrap intervals. Comparisons require the method and at least one alternative to be available.
+
+![T23: fig 06a method level median ](fig_06a_method_level_median.png)
+
+**Figure T23.** Medians across target–method median TM-scores within each method and level, with bootstrap intervals obtained by resampling targets within levels.
+
+![T24: fig 06b method level best ](fig_06b_method_level_best.png)
+
+**Figure T24.** Medians across target–method best observed TM-scores within each method and level, with within-level target-bootstrap intervals.
+
+![T25: fig 06c method level quality breadth ](fig_06c_method_level_quality_breadth.png)
+
+**Figure T25.** Medians across within-target TM-score interquartile ranges for each method and level, with within-level target-bootstrap intervals.
+
+</details>
+
 ## RNA-only lDDT
 
 **Table 4. RNA-only C4′ global lDDT by level and overall.**
@@ -128,6 +239,81 @@ At a threshold of >0.60, AF3 has the largest fraction in Level I (8.92%) and Lev
 This profile contains **103,396 valid lDDT scores across 676 scored targets**. Target `1EMI` lacks C4′ scores for all methods, and ESMFold2 additionally lacks `8D97`. These are missing scores, not additional sequence-length exclusions. The score is `global_lDDT`, not `average_local_lDDT` or all-atom lDDT.
 
 AF3 has the highest all-decoy mean lDDT overall and in Levels I and III. Protenix has the highest mean in Level II. Both all-decoy and target-median summaries are shown so that score pooling and equal-target summaries can be compared directly.
+
+### RNA-only lDDT figures
+
+These figures use C4′ atoms in all three levels. Higher lDDT indicates better local distance agreement. Counts and missing scores follow Table 4.
+
+![L1: All decoys and target medians: violin distributions ](lddt_rna_only_01_distributions.png)
+
+**Figure L1.** All-decoy and across-target-median lDDT distributions, shown overall and by level. Target medians are calculated within each target–method cell before being compared across targets.
+
+![L2: All decoys and target medians: exact ECDFs ](lddt_rna_only_02_ecdf.png)
+
+**Figure L2.** Exact empirical cumulative distributions of all-decoy lDDT and target-median lDDT. All available observations are retained.
+
+![L3: All decoys and target medians: strict threshold coverage ](lddt_rna_only_03_threshold_coverage.png)
+
+**Figure L3.** Fractions above the descriptive lDDT cutoffs shown in the figure. All-decoy and target-median coverage use different observation units; the comparisons are strict (>).
+
+![L4: Target×method mean, SD, median and best ](lddt_rna_only_04_cell_summaries.png)
+
+**Figure L4.** Target–method mean, sample SD, median, and best observed lDDT. Best observed means the maximum available score.
+
+![L5: Target×method raw threshold fractions ](lddt_rna_only_05_cell_thresholds.png)
+
+**Figure L5.** Within-target, within-method fractions of decoys strictly above the displayed lDDT cutoffs. Missing cells remain missing.
+
+![L6: Target landscape and within-target quality breadth ](lddt_rna_only_06_target_landscape.png)
+
+**Figure L6.** Target-level lDDT distributions and within-target quality breadth across the observed prediction pool.
+
+![L7: Observed-pool method complementarity ](lddt_rna_only_07_complementarity.png)
+
+**Figure L7.** Complementarity of methods in the observed prediction pool. Best-score and oracle comparisons reflect the actual generation counts for each method.
+
+![L8: Across-target method correlations ](lddt_rna_only_08_correlations.png)
+
+**Figure L8.** Across-target correlations between methods' score summaries. These describe shared score patterns and do not establish structural equivalence.
+
+<details>
+<summary>Mixed-backbone lDDT companion figures (8 figures)</summary>
+
+This companion profile uses C4′ in Levels I/II and C4′ + Cα in Level III. Its Level III scores evaluate complexes and must be kept separate from the RNA-only results in Table 4. The profile corresponds to the scoring scope of the dataset summary in Table 1.
+
+![L9: All decoys and target medians: violin distributions ](lddt_sheet_reference_01_distributions.png)
+
+**Figure L9.** All-decoy and across-target-median lDDT distributions, shown overall and by level. Target medians are calculated within each target–method cell before being compared across targets. This figure uses the mixed-backbone companion profile.
+
+![L10: All decoys and target medians: exact ECDFs ](lddt_sheet_reference_02_ecdf.png)
+
+**Figure L10.** Exact empirical cumulative distributions of all-decoy lDDT and target-median lDDT. All available observations are retained. This figure uses the mixed-backbone companion profile.
+
+![L11: All decoys and target medians: strict threshold coverage ](lddt_sheet_reference_03_threshold_coverage.png)
+
+**Figure L11.** Fractions above the descriptive lDDT cutoffs shown in the figure. All-decoy and target-median coverage use different observation units; the comparisons are strict (>). This figure uses the mixed-backbone companion profile.
+
+![L12: Target×method mean, SD, median and best ](lddt_sheet_reference_04_cell_summaries.png)
+
+**Figure L12.** Target–method mean, sample SD, median, and best observed lDDT. Best observed means the maximum available score. This figure uses the mixed-backbone companion profile.
+
+![L13: Target×method raw threshold fractions ](lddt_sheet_reference_05_cell_thresholds.png)
+
+**Figure L13.** Within-target, within-method fractions of decoys strictly above the displayed lDDT cutoffs. Missing cells remain missing. This figure uses the mixed-backbone companion profile.
+
+![L14: Target landscape and within-target quality breadth ](lddt_sheet_reference_06_target_landscape.png)
+
+**Figure L14.** Target-level lDDT distributions and within-target quality breadth across the observed prediction pool. This figure uses the mixed-backbone companion profile.
+
+![L15: Observed-pool method complementarity ](lddt_sheet_reference_07_complementarity.png)
+
+**Figure L15.** Complementarity of methods in the observed prediction pool. Best-score and oracle comparisons reflect the actual generation counts for each method. This figure uses the mixed-backbone companion profile.
+
+![L16: Across-target method correlations ](lddt_sheet_reference_08_correlations.png)
+
+**Figure L16.** Across-target correlations between methods' score summaries. These describe shared score patterns and do not establish structural equivalence. This figure uses the mixed-backbone companion profile.
+
+</details>
 
 ## RNA-only RMSD
 
@@ -183,6 +369,85 @@ Each target's median uses all of its valid decoys. Each correlation uses targets
 
 Correlations are strongest and most consistent in Level I (ρ = 0.818–0.931), and more variable in Level II (0.588–0.902) and Level III (0.643–0.897). Higher correlation indicates more similar rankings of target error, not necessarily lower RMSD or greater structural similarity between the predictors' models.
 
+![R1: Target-median RMSD correlations and head-to-head comparisons across levels](fig_rmsd_11_median_head_to_head_vertical.png)
+
+**Figure R1.** Pairwise comparisons of target-level median RNA-only RMSD, complementing Table 6. Upper-triangle cells show Spearman correlations and pairwise target counts; lower-triangle panels compare the same targets between two methods, with dashed identity lines. Marginal histograms show the target-median distributions. The displayed RMSD axes span 0–50 Å. Level I and II pairs include 416 and 117 targets; Level III pairs include 135 targets, or 134 when ESMFold2 is involved.
+
+### RNA-only RMSD figures
+
+These figures use C4′ atoms in all three levels and include every successfully evaluated eligible decoy. RMSD is reported in Å; lower is better. Long tails are retained. The target-median correlations are presented in Table 6 and Figure R1.
+
+![R2: All-decoy and target-median violin distributions ](rmsd_rna_only_01_distributions.png)
+
+**Figure R2.** All-decoy and across-target-median RMSD distributions, overall and by level. Lower RMSD indicates closer agreement after the stated structural superposition.
+
+![R3: Mean ± sample SD and median ](rmsd_rna_only_02_mean_sd.png)
+
+**Figure R3.** Mean, sample SD, and median RMSD for the observation units shown. SD describes dispersion; it is not a standard error or confidence interval.
+
+![R4: Exact cumulative distributions ](rmsd_rna_only_03_ecdf.png)
+
+**Figure R4.** Exact empirical cumulative distributions of RMSD. Every valid observation contributes, including the long upper tails.
+
+![R5: Strict low-RMSD threshold coverage ](rmsd_rna_only_04_thresholds.png)
+
+**Figure R5.** Fractions with RMSD strictly below 2, 5, 10, or 20 Å. These are descriptive cutoffs rather than validated success criteria.
+
+![R6: Target×method mean, SD, median and minimum ](rmsd_rna_only_05_cell_summaries.png)
+
+**Figure R6.** Target–method mean, sample SD, median, and minimum observed RMSD. The minimum is the best observed score for this metric.
+
+![R7: Target×method raw threshold fractions ](rmsd_rna_only_06_cell_thresholds.png)
+
+**Figure R7.** Within-target, within-method fractions of valid decoys below the displayed RMSD cutoffs. Failed or absent scores are not replaced by zero.
+
+![R8: Target landscape and error dispersion ](rmsd_rna_only_07_landscape.png)
+
+**Figure R8.** Target-level RMSD distributions and within-target error dispersion. Any symlog axis is a display transform; statistics retain the original Å values.
+
+![R9: Observed-pool method complementarity ](rmsd_rna_only_08_complementarity.png)
+
+**Figure R9.** Observed-pool method complementarity using minimum RMSD as the best score. Generation counts and the available target–method cells determine the observed oracle.
+
+<details>
+<summary>Mixed-backbone RMSD companion figures (8 figures)</summary>
+
+This companion profile uses C4′ in Levels I/II and a shared C4′ + Cα superposition for Level III RNA–protein complexes. Its Level III values differ in scope from RNA-only RMSD and correspond to the dataset-summary convention in Table 1.
+
+![R10: All-decoy and target-median violin distributions ](rmsd_mixed_backbone_01_distributions.png)
+
+**Figure R10.** All-decoy and across-target-median RMSD distributions, overall and by level. Lower RMSD indicates closer agreement after the stated structural superposition. This figure uses the mixed-backbone companion profile.
+
+![R11: Mean ± sample SD and median ](rmsd_mixed_backbone_02_mean_sd.png)
+
+**Figure R11.** Mean, sample SD, and median RMSD for the observation units shown. SD describes dispersion; it is not a standard error or confidence interval. This figure uses the mixed-backbone companion profile.
+
+![R12: Exact cumulative distributions ](rmsd_mixed_backbone_03_ecdf.png)
+
+**Figure R12.** Exact empirical cumulative distributions of RMSD. Every valid observation contributes, including the long upper tails. This figure uses the mixed-backbone companion profile.
+
+![R13: Strict low-RMSD threshold coverage ](rmsd_mixed_backbone_04_thresholds.png)
+
+**Figure R13.** Fractions with RMSD strictly below 2, 5, 10, or 20 Å. These are descriptive cutoffs rather than validated success criteria. This figure uses the mixed-backbone companion profile.
+
+![R14: Target×method mean, SD, median and minimum ](rmsd_mixed_backbone_05_cell_summaries.png)
+
+**Figure R14.** Target–method mean, sample SD, median, and minimum observed RMSD. The minimum is the best observed score for this metric. This figure uses the mixed-backbone companion profile.
+
+![R15: Target×method raw threshold fractions ](rmsd_mixed_backbone_06_cell_thresholds.png)
+
+**Figure R15.** Within-target, within-method fractions of valid decoys below the displayed RMSD cutoffs. Failed or absent scores are not replaced by zero. This figure uses the mixed-backbone companion profile.
+
+![R16: Target landscape and error dispersion ](rmsd_mixed_backbone_07_landscape.png)
+
+**Figure R16.** Target-level RMSD distributions and within-target error dispersion. Any symlog axis is a display transform; statistics retain the original Å values. This figure uses the mixed-backbone companion profile.
+
+![R17: Observed-pool method complementarity ](rmsd_mixed_backbone_08_complementarity.png)
+
+**Figure R17.** Observed-pool method complementarity using minimum RMSD as the best score. Generation counts and the available target–method cells determine the observed oracle. This figure uses the mixed-backbone companion profile.
+
+</details>
+
 ## DockQ for Level III
 
 **Table 7. All-decoy DockQ reference-quality distribution for RNA–protein complexes.**
@@ -200,11 +465,49 @@ Here, D denotes DockQ. These categories are mutually exclusive and follow the st
 
 Across 22,000 Level III decoys, AF3 has the highest proportions of medium-or-higher reference quality (59.18%) and high reference quality (23.10%). ESMFold2 is second in medium-or-higher coverage (44.17%), while Protenix has a larger high-quality fraction than ESMFold2 (13.94% versus 10.62%). Overall, 41.67% fall below the 0.23 reference cutoff. These results describe the observed interface-score distribution under the stated cutoffs.
 
-### DockQ score distributions
+### DockQ figures
 
-![DockQ distributions for all decoys, target medians, and target means](dockq_01_distributions.png)
+All DockQ figures concern Level III RNA–protein interfaces. The conventional DockQ cutoffs are descriptive reference bands here; these analyses do not separately validate them as RNA–protein success criteria. Primary analyses retain all 144 eligible targets, with 8D97 absent for ESMFold2.
 
-**Figure D1. All-decoy and across-target DockQ distributions.** The left panel includes all 22,000 Level III decoys. The middle and right panels summarize the per-target median and mean DockQ for each method. Each target contributes one value per method to these two panels; ESMFold2 covers 143 targets and the other methods cover 144. The red horizontal reference is the pooled all-decoy median (0.3208). Higher DockQ indicates better agreement at the RNA–protein interface.
+![D1: All-decoy and across-target violin distributions ](dockq_01_distributions.png)
+
+**Figure D1.** The left panel includes all 22,000 Level III decoys. The middle and right panels show the distributions of per-target median and mean DockQ, respectively. ESMFold2 covers 143 targets; the other methods cover 144. The red line is the pooled all-decoy median (0.3208).
+
+![D2: Mean ± SD and median ](dockq_02_mean_sd_median.png)
+
+**Figure D2.** Mean, sample SD, and median DockQ for all decoys, target medians, and target means. Dispersion across decoys and dispersion across target summaries are distinct quantities.
+
+![D3: Exact ECDFs ](dockq_03_ecdf.png)
+
+**Figure D3.** Exact empirical cumulative distributions of DockQ for the three observation units. Higher scores indicate better interface agreement.
+
+![D4: Reference-threshold coverage ](dockq_04_reference_coverage.png)
+
+**Figure D4.** Cumulative reference coverage at DockQ ≥ 0.23, ≥ 0.49, and ≥ 0.80, for the observation units shown. Unlike the mutually exclusive categories in Table 7, these cumulative coverages overlap.
+
+![D5: Target×method mean, SD, median and best ](dockq_05_cell_summaries.png)
+
+**Figure D5.** Target–method mean, sample SD, median, and maximum observed DockQ across all eligible Level III targets.
+
+![D6: Target×method all-decoy reference coverage ](dockq_06_cell_coverage.png)
+
+**Figure D6.** Within-target, within-method fractions of decoys reaching the three cumulative DockQ reference cutoffs. Missing observations remain missing.
+
+![D7: All-decoy target landscape ](dockq_07_target_landscape.png)
+
+**Figure D7.** All-decoy DockQ distributions across Level III targets, separated by method and accompanied by target-level summaries.
+
+![D8: Observed-pool complementarity ](dockq_08_complementarity.png)
+
+**Figure D8.** Complementarity of the observed methods in reaching the best available interface score. Oracle gains depend on the actual generated decoy pools.
+
+![D9: Across-target method correlations ](dockq_09_correlations.png)
+
+**Figure D9.** Across-target method correlations for target medians and target means, using the 143 targets common to all methods for this comparison. Primary results retain all 144 eligible targets.
+
+![D10: All-decoy sequence length vs DockQ ](dockq_10_length.png)
+
+**Figure D10.** All-decoy DockQ versus reference RNA + protein sequence length for Level III complexes. Each point is one decoy; the length axis is logarithmic. All 22,000 decoys are retained without jitter or subsampling.
 
 ## Interpretation and limitations
 
